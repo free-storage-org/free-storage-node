@@ -26,12 +26,13 @@ jobs:
                       target: x86_64-apple-darwin
                       build: |
                           yarn build
-                          strip -x *.node
+                          strip -x "@tbn/*.node"
                     - host: windows-latest
                       build: yarn build
                       target: x86_64-pc-windows-msvc
                     - host: windows-latest
                       build: |
+                          choco install openssl
                           yarn build --target i686-pc-windows-msvc
                           yarn test
                       target: i686-pc-windows-msvc
@@ -39,9 +40,10 @@ jobs:
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
                       build: |-
+                          apt-get install libssl-dev &&
                           set -e &&
                           yarn build --target x86_64-unknown-linux-gnu &&
-                          strip *.node
+                          strip "@tbn/*.node"
                     - host: macos-latest
                       target: aarch64-apple-darwin
                       build: |
@@ -51,17 +53,20 @@ jobs:
                           SYSROOT=$(xcrun --sdk macosx --show-sdk-path);
                           export CFLAGS="-isysroot $SYSROOT -isystem $SYSROOT";
                           yarn build --target aarch64-apple-darwin
-                          strip -x *.node
+                          strip -x "@tbn/*.node"
                     - host: ubuntu-latest
                       target: aarch64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
                       build: |-
+                          apt-get install libssl-dev &&
                           set -e &&
                           yarn build --target aarch64-unknown-linux-gnu &&
-                          aarch64-unknown-linux-gnu-strip *.node
+                          aarch64-unknown-linux-gnu-strip "@tbn/*.node"
                     - host: windows-latest
                       target: aarch64-pc-windows-msvc
-                      build: yarn build --target aarch64-pc-windows-msvc
+                      build: |
+                          choco install openssl
+                          yarn build --target aarch64-pc-windows-msvc
         name: stable - ${{ matrix.settings.target }} - node@16
         runs-on: ${{ matrix.settings.host }}
         steps:
@@ -105,7 +110,9 @@ jobs:
               run: yarn config set supportedArchitectures.cpu "ia32"
               shell: bash
             - name: Install dependencies
-              run: yarn install
+              run: |
+                  choco install openssl
+                  yarn install
             - name: Setup node x86
               uses: actions/setup-node@v3
               if: matrix.settings.target == 'i686-pc-windows-msvc'
