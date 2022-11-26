@@ -25,21 +25,17 @@ jobs:
                       target: x86_64-apple-darwin
                       build: |
                           yarn build
-
                     - host: windows-latest
                       build: |
-                          echo -e '#!/bin/bash \n /c/Strawberry/perl/bin/perl.exe "$@"' >> perl
-                          chmod +x ./perl
-                          export PATH="$(pwd):$PATH"
+                          choco install --force StrawberryPerl
+                          set path C:\Strawberry\perl\bin;%path%
                           yarn build
                       target: x86_64-pc-windows-msvc
 
                     - host: windows-latest
                       build: |
                           choco install --force StrawberryPerl
-                          echo -e '#!/bin/bash \n /c/Strawberry/perl/bin/perl.exe "$@"' >> perl
-                          chmod +x ./perl
-                          export PATH="$(pwd):$PATH"
+                          set path C:\Strawberry\perl\bin;%path%
                           yarn build --target i686-pc-windows-msvc
                           yarn test
                       target: i686-pc-windows-msvc
@@ -47,11 +43,10 @@ jobs:
                     - host: ubuntu-latest
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
-                      build: |
-                          export CFLAGS="$CFLAGS -D__GLIBC_USE\(...\)=0"
-                          set -e
+                      build: |-
+                          export CFLAGS="$CFLAGS -D__GLIBC_USE\(...\)=0" &&
+                          set -e &&
                           yarn build --target x86_64-unknown-linux-gnu
-
                     - host: macos-latest
                       target: aarch64-apple-darwin
                       build: |
@@ -61,23 +56,19 @@ jobs:
                           SYSROOT=$(xcrun --sdk macosx --show-sdk-path);
                           export CFLAGS="-isysroot $SYSROOT -isystem $SYSROOT";
                           yarn build --target aarch64-apple-darwin
-
                     - host: ubuntu-latest
                       target: aarch64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
-                      build: |
-                          export CFLAGS="$CFLAGS -D__GLIBC_USE\(...\)=0"
-                          set -e
+                      build: |-
+                          export CFLAGS="$CFLAGS -D__GLIBC_USE\(...\)=0" &&
+                          set -e &&
                           yarn build --target aarch64-unknown-linux-gnu
-
                     - host: windows-latest
                       target: aarch64-pc-windows-msvc
                       build: |
-                          echo -e '#!/bin/bash \n /c/Strawberry/perl/bin/perl.exe "$@"' >> perl
-                          chmod +x ./perl
-                          export PATH="$(pwd):$PATH"
+                          choco install --force StrawberryPerl
+                          set path C:\Strawberry\perl\bin;%path%
                           yarn build --target aarch64-pc-windows-msvc
-
         name: stable - ${{ matrix.settings.target }} - node@16
         runs-on: ${{ matrix.settings.host }}
         steps:
@@ -185,7 +176,6 @@ jobs:
                   path: .
             - name: List packages
               run: ls -R .
-              shell: bash
             - name: Test bindings
               run: yarn test
     test-linux-x64-gnu-binding:
@@ -267,7 +257,6 @@ jobs:
                       set -e
                       yarn test
                       ls -la
-
     publish:
         name: Publish
         runs-on: ubuntu-latest
