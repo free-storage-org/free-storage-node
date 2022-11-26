@@ -28,15 +28,18 @@ jobs:
 
                     - host: windows-latest
                       build: |
-                          choco install --force StrawberryPerl
-                          export PATH="/c/Strawberryperl/perl/bin:$PATH"
+                          echo -e '#!/bin/bash \n /c/Strawberry/perl/bin/perl.exe "$@"' >> perl
+                          chmod +x ./perl
+                          export PATH="$(pwd):$PATH"
                           yarn build
                       target: x86_64-pc-windows-msvc
 
                     - host: windows-latest
                       build: |
                           choco install --force StrawberryPerl
-                          export PATH="/c/Strawberryperl/perl/bin:$PATH"
+                          echo -e '#!/bin/bash \n /c/Strawberry/perl/bin/perl.exe "$@"' >> perl
+                          chmod +x ./perl
+                          export PATH="$(pwd):$PATH"
                           yarn build --target i686-pc-windows-msvc
                           yarn test
                       target: i686-pc-windows-msvc
@@ -70,8 +73,9 @@ jobs:
                     - host: windows-latest
                       target: aarch64-pc-windows-msvc
                       build: |
-                          choco install --force StrawberryPerl
-                          export PATH="/c/Strawberryperl/perl/bin:$PATH"
+                          echo -e '#!/bin/bash \n /c/Strawberry/perl/bin/perl.exe "$@"' >> perl
+                          chmod +x ./perl
+                          export PATH="$(pwd):$PATH"
                           yarn build --target aarch64-pc-windows-msvc
 
         name: stable - ${{ matrix.settings.target }} - node@16
