@@ -17,7 +17,11 @@
     "license": "MIT",
     "devDependencies": {
         "@napi-rs/cli": "^2.13.0",
+        "ava": "^5.1.0",
         "prettier": "^2.8.0"
+    },
+    "ava": {
+        "timeout": "3m"
     },
     "engines": {
         "node": ">= 10"
@@ -27,6 +31,7 @@
         "build": "napi build --platform --release",
         "build:debug": "napi build --platform",
         "prepublishOnly": "napi prepublish -t npm",
+        "test": "ava",
         "version": "napi version",
         "fmt": "cargo fmt && prettier --write ."
     },
