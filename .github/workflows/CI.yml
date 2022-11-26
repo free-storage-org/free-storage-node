@@ -28,13 +28,11 @@ jobs:
 
                     - host: windows-latest
                       build: |
-                          choco install openssl
                           yarn build
                       target: x86_64-pc-windows-msvc
 
                     - host: windows-latest
                       build: |
-                          choco install openssl
                           yarn build --target i686-pc-windows-msvc
                           yarn test
                       target: i686-pc-windows-msvc
@@ -43,7 +41,6 @@ jobs:
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
                       build: |-
-                          apt-get install -y libssl-dev pkg-config build-essential libudev-dev &&
                           set -e &&
                           yarn build --target x86_64-unknown-linux-gnu
 
@@ -61,14 +58,12 @@ jobs:
                       target: aarch64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
                       build: |-
-                          apt-get install -y libssl-dev pkg-config build-essential libudev-dev &&
                           set -e &&
                           yarn build --target aarch64-unknown-linux-gnu
 
                     - host: windows-latest
                       target: aarch64-pc-windows-msvc
                       build: |
-                          choco install openssl
                           yarn build --target aarch64-pc-windows-msvc
 
         name: stable - ${{ matrix.settings.target }} - node@16
