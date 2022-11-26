@@ -1,21 +1,21 @@
 {
-    "name": "@tbn/free-storage-linux-arm64-gnu",
-    "version": "0.0.0",
-    "os": [
-        "linux"
-    ],
-    "cpu": [
-        "arm64"
-    ],
-    "main": "@tbn/free-storage.linux-arm64-gnu.node",
-    "files": [
-        "@tbn/free-storage.linux-arm64-gnu.node"
-    ],
-    "license": "MIT",
-    "engines": {
-        "node": ">= 10"
-    },
-    "libc": [
-        "glibc"
-    ]
+  "name": "@tbn/free-storage-linux-arm64-gnu",
+  "version": "0.0.1",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "@tbn/free-storage.linux-arm64-gnu.node",
+  "files": [
+    "@tbn/free-storage.linux-arm64-gnu.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "libc": [
+    "glibc"
+  ]
 }

@@ -68,6 +68,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tbn/free-storage@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@tbn/free-storage@workspace:."
+  dependencies:
+    "@napi-rs/cli": ^2.13.0
+    ava: ^4.3.3
+    prettier: ^2.8.0
+  languageName: unknown
+  linkType: soft
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -774,16 +784,6 @@ __metadata:
   checksum: 9a21b7f9244a420e54c6df95b4f6fc3941efd3c3e5476f8274eb452f6a85706e7a6a90de71353ee4f091fcb4593271a6f92810a324ec542650398f928783c280
   languageName: node
   linkType: hard
-
-"free-storage@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "free-storage@workspace:."
-  dependencies:
-    "@napi-rs/cli": ^2.13.0
-    ava: ^4.3.3
-    prettier: ^2.8.0
-  languageName: unknown
-  linkType: soft
 
 "fs-minipass@npm:^2.0.0, fs-minipass@npm:^2.1.0":
   version: 2.1.0

@@ -1,39 +1,49 @@
 {
+  "name": "@tbn/free-storage",
+  "version": "0.0.1",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "private": false,
+  "napi": {
     "name": "@tbn/free-storage",
-    "version": "0.0.0",
-    "main": "index.js",
-    "types": "index.d.ts",
-    "napi": {
-        "name": "@tbn/free-storage",
-        "triples": {
-            "additional": [
-                "aarch64-apple-darwin",
-                "aarch64-unknown-linux-gnu",
-                "aarch64-pc-windows-msvc",
-                "i686-pc-windows-msvc"
-            ]
-        }
-    },
-    "license": "MIT",
-    "devDependencies": {
-        "@napi-rs/cli": "^2.13.0",
-        "ava": "^4.3.3",
-        "prettier": "^2.8.0"
-    },
-    "ava": {
-        "timeout": "3m"
-    },
-    "engines": {
-        "node": ">= 10"
-    },
-    "scripts": {
-        "artifacts": "napi artifacts",
-        "build": "napi build --platform --release",
-        "build:debug": "napi build --platform",
-        "prepublishOnly": "napi prepublish -t npm",
-        "test": "ava",
-        "version": "napi version",
-        "fmt": "cargo fmt && prettier --write ."
-    },
-    "packageManager": "yarn@3.3.0"
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-pc-windows-msvc",
+        "i686-pc-windows-msvc"
+      ]
+    }
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.13.0",
+    "ava": "^4.3.3",
+    "prettier": "^2.8.0"
+  },
+  "ava": {
+    "timeout": "3m"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "ava",
+    "version": "napi version",
+    "fmt": "cargo fmt && prettier --write ."
+  },
+  "packageManager": "yarn@3.3.0",
+  "optionalDependencies": {
+    "@tbn/free-storage-win32-x64-msvc": "0.0.1",
+    "@tbn/free-storage-darwin-x64": "0.0.1",
+    "@tbn/free-storage-linux-x64-gnu": "0.0.1",
+    "@tbn/free-storage-darwin-arm64": "0.0.1",
+    "@tbn/free-storage-linux-arm64-gnu": "0.0.1",
+    "@tbn/free-storage-win32-arm64-msvc": "0.0.1",
+    "@tbn/free-storage-win32-ia32-msvc": "0.0.1"
+  }
 }

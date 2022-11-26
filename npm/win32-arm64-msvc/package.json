@@ -1,18 +1,18 @@
 {
-    "name": "@tbn/free-storage-win32-arm64-msvc",
-    "version": "0.0.0",
-    "os": [
-        "win32"
-    ],
-    "cpu": [
-        "arm64"
-    ],
-    "main": "@tbn/free-storage.win32-arm64-msvc.node",
-    "files": [
-        "@tbn/free-storage.win32-arm64-msvc.node"
-    ],
-    "license": "MIT",
-    "engines": {
-        "node": ">= 10"
-    }
+  "name": "@tbn/free-storage-win32-arm64-msvc",
+  "version": "0.0.1",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "@tbn/free-storage.win32-arm64-msvc.node",
+  "files": [
+    "@tbn/free-storage.win32-arm64-msvc.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  }
 }

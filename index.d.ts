@@ -10,7 +10,7 @@ export class File {
 export type JsFileId = FileId
 export class FileId {
   constructor()
-  static upload(fileName: string, fileData: Uint8Array, repo: string, token: string): Promise<unknown>
+  static upload(fileName: string, fileData: Array<number>, repo: string, token: string): Promise<unknown>
   get(token?: string | undefined | null): Promise<File>
   __debug(): void
 }
