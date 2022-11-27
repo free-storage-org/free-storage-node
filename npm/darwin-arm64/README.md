@@ -1,3 +1,3 @@
-# `free-storage-darwin-arm64`
+# `@tbn/free-storage-darwin-arm64`
 
-This is the **aarch64-apple-darwin** binary for `free-storage`
+This is the **aarch64-apple-darwin** binary for `@tbn/free-storage`

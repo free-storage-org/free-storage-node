@@ -1,15 +1,15 @@
 {
   "name": "@tbn/free-storage-win32-ia32-msvc",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "os": [
     "win32"
   ],
   "cpu": [
     "ia32"
   ],
-  "main": "@tbn/free-storage.win32-ia32-msvc.node",
+  "main": "free-storage.win32-ia32-msvc.node",
   "files": [
-    "@tbn/free-storage.win32-ia32-msvc.node"
+    "free-storage.win32-ia32-msvc.node"
   ],
   "license": "MIT",
   "engines": {

@@ -5,12 +5,13 @@
 
 export class File {
   name: string
-  data: Array<number>
+  data: Buffer
 }
 export type JsFileId = FileId
 export class FileId {
   constructor()
-  static upload(fileName: string, fileData: Array<number>, repo: string, token: string): Promise<unknown>
+  static fromRaw(assetIds: Array<number>, repo: string): FileId
+  static upload(fileName: string, fileData: Array<number>, repo: string, token: string): Promise<FileId>
   get(token?: string | undefined | null): Promise<File>
   __debug(): void
 }

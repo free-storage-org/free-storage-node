@@ -4,7 +4,7 @@
     "main": "index.js",
     "types": "index.d.ts",
     "napi": {
-        "name": "@tbn/free-storage",
+        "name": "free-storage",
         "triples": {
             "additional": [
                 "aarch64-apple-darwin",
@@ -17,6 +17,7 @@
     "license": "MIT",
     "devDependencies": {
         "@napi-rs/cli": "^2.13.0",
+        "@types/node": "^18.11.9",
         "ava": "^5.1.0",
         "prettier": "^2.8.0"
     },

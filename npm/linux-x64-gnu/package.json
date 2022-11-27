@@ -1,15 +1,15 @@
 {
   "name": "@tbn/free-storage-linux-x64-gnu",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "os": [
     "linux"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "@tbn/free-storage.linux-x64-gnu.node",
+  "main": "free-storage.linux-x64-gnu.node",
   "files": [
-    "@tbn/free-storage.linux-x64-gnu.node"
+    "free-storage.linux-x64-gnu.node"
   ],
   "license": "MIT",
   "engines": {

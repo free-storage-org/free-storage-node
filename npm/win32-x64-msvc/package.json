@@ -1,15 +1,15 @@
 {
   "name": "@tbn/free-storage-win32-x64-msvc",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "os": [
     "win32"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "@tbn/free-storage.win32-x64-msvc.node",
+  "main": "free-storage.win32-x64-msvc.node",
   "files": [
-    "@tbn/free-storage.win32-x64-msvc.node"
+    "free-storage.win32-x64-msvc.node"
   ],
   "license": "MIT",
   "engines": {

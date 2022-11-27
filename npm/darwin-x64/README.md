@@ -1,3 +1,3 @@
-# `free-storage-darwin-x64`
+# `@tbn/free-storage-darwin-x64`
 
-This is the **x86_64-apple-darwin** binary for `free-storage`
+This is the **x86_64-apple-darwin** binary for `@tbn/free-storage`

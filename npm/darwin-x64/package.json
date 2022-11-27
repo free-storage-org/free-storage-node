@@ -1,15 +1,15 @@
 {
   "name": "@tbn/free-storage-darwin-x64",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "os": [
     "darwin"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "@tbn/free-storage.darwin-x64.node",
+  "main": "free-storage.darwin-x64.node",
   "files": [
-    "@tbn/free-storage.darwin-x64.node"
+    "free-storage.darwin-x64.node"
   ],
   "license": "MIT",
   "engines": {

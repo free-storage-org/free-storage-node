@@ -1,8 +1,9 @@
 name: CI
 env:
     DEBUG: napi:*
+    APP_NAME: free-storage
     MACOSX_DEPLOYMENT_TARGET: "10.13"
-on:
+"on":
     push:
         branches:
             - main
@@ -14,7 +15,6 @@ on:
             - docs/**
     release:
         types: [published]
-    
 jobs:
     build:
         strategy:
@@ -31,7 +31,6 @@ jobs:
                           $env:Path = "C:\Strawberry\perl\bin;" + $env:Path
                           yarn build
                       target: x86_64-pc-windows-msvc
-
                     - host: windows-latest
                       build: |
                           choco install --force StrawberryPerl
@@ -39,7 +38,6 @@ jobs:
                           yarn build --target i686-pc-windows-msvc
                           yarn test
                       target: i686-pc-windows-msvc
-
                     - host: ubuntu-latest
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
@@ -135,9 +133,8 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                   name: bindings-${{ matrix.settings.target }}
-                  path: "@tbn/*.node"
+                  path: ${{ env.APP_NAME }}.*.node
                   if-no-files-found: error
-
     test-macOS-windows-binding:
         name: Test bindings on ${{ matrix.settings.target }} - node@${{ matrix.node }}
         needs:
@@ -260,7 +257,6 @@ jobs:
     publish:
         name: Publish
         runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'release' }}
         needs:
             - test-macOS-windows-binding
             - test-linux-x64-gnu-binding
@@ -290,6 +286,8 @@ jobs:
               run: ls -R ./npm
               shell: bash
             - name: Publish
+              # TODO: publish prereleases to NPM
+              if: ${{ github.event_name == 'release' }}
               run: |
                   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
                   npm publish --access public
