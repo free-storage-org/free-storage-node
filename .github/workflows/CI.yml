@@ -27,14 +27,10 @@ jobs:
                           yarn build
                     - host: windows-latest
                       build: |
-                          choco install --force StrawberryPerl
-                          $env:Path = "C:\Strawberry\perl\bin;" + $env:Path
                           yarn build
                       target: x86_64-pc-windows-msvc
                     - host: windows-latest
                       build: |
-                          choco install --force StrawberryPerl
-                          $env:Path = "C:\Strawberry\perl\bin;" + $env:Path
                           yarn build --target i686-pc-windows-msvc
                           yarn test
                       target: i686-pc-windows-msvc
@@ -42,7 +38,7 @@ jobs:
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
                       build: |
-                          export CFLAGS="$CFLAGS -D__GLIBC_USE\(...\)=0"
+                          apt-get install ca-certificates -y
                           set -e
                           yarn build --target x86_64-unknown-linux-gnu
                     - host: macos-latest
@@ -58,14 +54,12 @@ jobs:
                       target: aarch64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
                       build: |
-                          export CFLAGS="$CFLAGS -D__GLIBC_USE\(...\)=0"
+                          apt-get install ca-certificates -y
                           set -e
                           yarn build --target aarch64-unknown-linux-gnu
                     - host: windows-latest
                       target: aarch64-pc-windows-msvc
                       build: |
-                          choco install --force StrawberryPerl
-                          $env:Path = "C:\Strawberry\perl\bin;" + $env:Path
                           yarn build --target aarch64-pc-windows-msvc
         name: stable - ${{ matrix.settings.target }} - node@16
         runs-on: ${{ matrix.settings.host }}
