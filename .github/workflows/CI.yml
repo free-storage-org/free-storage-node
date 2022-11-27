@@ -38,7 +38,6 @@ jobs:
                       target: x86_64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
                       build: |
-                          apt-get install ca-certificates -y
                           set -e
                           yarn build --target x86_64-unknown-linux-gnu
                     - host: macos-latest
@@ -54,7 +53,6 @@ jobs:
                       target: aarch64-unknown-linux-gnu
                       docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
                       build: |
-                          apt-get install ca-certificates -y
                           set -e
                           yarn build --target aarch64-unknown-linux-gnu
                     - host: windows-latest
@@ -123,6 +121,7 @@ jobs:
             - name: Build
               run: ${{ matrix.settings.build }}
               if: ${{ !matrix.settings.docker }}
+              shell: bash
             - name: Upload artifact
               uses: actions/upload-artifact@v3
               with:
