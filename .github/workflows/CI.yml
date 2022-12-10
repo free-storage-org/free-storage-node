@@ -131,7 +131,7 @@ jobs:
             - name: List packages
               run: ls -R .
             - name: Test bindings
-              run: yarn Test
+              run: yarn test
 
     publish:
         name: Publish
