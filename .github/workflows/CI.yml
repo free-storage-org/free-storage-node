@@ -164,14 +164,17 @@ jobs:
               # push a commit with a message like "v1.2.3" to publish a release
               # push a commit with a message like "v1.2.3-beta.1" to publish a prerelease
               run: |
-                  if git log -1 --pretty=%B | grep "^v[0-9]\+\.[0-9]\+\.[0-9]\+$";
+                  if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
                   then
+                    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
                     npm publish --access public
-                  elif git log -1 --pretty=%B | grep "^v[0-9]\+\.[0-9]\+\.[0-9]\+";
+                  elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
                   then
+                    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
                     npm publish --tag next --access public
                   else
                     echo "Not a release, skipping publish"
                   fi
               env:
-                  NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
