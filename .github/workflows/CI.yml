@@ -13,8 +13,6 @@ env:
             - "**/*.gitignore"
             - .editorconfig
             - docs/**
-    release:
-        types: [published]
 jobs:
     build:
         strategy:
@@ -164,9 +162,17 @@ jobs:
             - name: Publish
               # TODO: publish prereleases to NPM
               if: ${{ github.event_name == 'release' }}
+              # push a commit with a message like "v1.2.3" to publish a release
+              # push a commit with a message like "v1.2.3-beta.1" to publish a prerelease
               run: |
-                  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-                  npm publish --access public
+                  if git log -1 --pretty=%B | grep "^v[0-9]\+\.[0-9]\+\.[0-9]\+$";
+                  then
+                    npm publish --access public
+                  elif git log -1 --pretty=%B | grep "^v[0-9]\+\.[0-9]\+\.[0-9]\+";
+                  then
+                    npm publish --tag next --access public
+                  else
+                    echo "Not a release, skipping publish"
+                  fi
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
