@@ -96,7 +96,7 @@ jobs:
                   path: ${{ env.APP_NAME }}.*.node
                   if-no-files-found: error
     test:
-        name: Test bindings on ${{ matrix.settings.target }} - node@${{ matrix.node }}
+        name: Test bindings on node@${{ matrix.node }}
         needs:
             - build
         strategy:
