@@ -63,8 +63,9 @@ jobs:
                   targets: ${{ matrix.settings.target }}
 
             - name: Setup
-              run: ${{ matrix.settings.setup }}
-              if: ${{ matrix.settings.setup }}
+              run: |
+                  sudo apt-get update
+                  ${{ matrix.settings.setup }}
               shell: bash
 
             - name: Setup Node x86
