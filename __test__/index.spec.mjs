@@ -1,5 +1,4 @@
 import test from "ava";
-import { check } from "prettier";
 import { FileId } from "../index.js";
 
 test("`new` error", (t) => {
