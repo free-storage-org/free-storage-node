@@ -21,7 +21,10 @@ test("getting a file", async (t) => {
         "free-storage-org/test-storage"
     ).get();
 
-    if (file.name.includes("API rate limit exceeded")) t.pass();
+    if (file.name.includes("API rate limit exceeded")) {
+        t.pass();
+        return;
+    }
 
     t.is(file.name, "hello.txt");
     t.is(file.data.toString(), "Hello Tests!\n");
