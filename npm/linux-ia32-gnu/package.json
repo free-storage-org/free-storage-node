@@ -1,0 +1,18 @@
+{
+    "name": "@tbn/free-storage-linux-ia32-gnu",
+    "version": "0.0.0",
+    "os": [
+        "linux"
+    ],
+    "cpu": [
+        "ia32"
+    ],
+    "main": "free-storage.linux-ia32-gnu.node",
+    "files": [
+        "free-storage.linux-ia32-gnu.node"
+    ],
+    "license": "MIT",
+    "engines": {
+        "node": ">= 10"
+    }
+}
